@@ -17,11 +17,17 @@ const theme: DefaultTheme = {
     mainFontSize: "1rem",
     biggerFontSize: "1.125rem",
     biggestFontSize: "1.25rem",
+    bigTitleFontSize: "2rem",
   },
 
   sizes: {
     mobileWidth: "320px",
     desktopBreakpoint: "900px",
+    inputHeight: "60px",
+  },
+
+  distances: {
+    inputLeftPadding: "16px",
   },
 };
 

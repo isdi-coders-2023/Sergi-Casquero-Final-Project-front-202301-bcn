@@ -18,11 +18,17 @@ declare module "styled-components" {
       mainFontSize: string;
       biggerFontSize: string;
       biggestFontSize: string;
+      bigTitleFontSize: string;
     };
 
     sizes: {
       mobileWidth: string;
       desktopBreakpoint: string;
+      inputHeight: string;
+    };
+
+    distances: {
+      inputLeftPadding: string;
     };
   }
 }

@@ -7,6 +7,12 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  #root {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+  }
+
   body {
     display: flex;
     flex-direction: column;
