@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "@fontsource/roboto";
 
 const GlobalStyles = createGlobalStyle`
   
@@ -14,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     margin: 0;
     background-color: #1C1C1E;
+    font-family: "roboto", sans-serif;
   }
 
   a {
