@@ -1,20 +1,33 @@
 import Button from "../Button/Button";
+import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
   return (
-    <>
-      <h2>Welcome back!</h2>
+    <LoginFormStyled className="login-form">
+      <h2 className="login-form__title">Welcome back!</h2>
       <label>
-        <input placeholder="Email" autoFocus />
+        <input
+          className="login-form__email"
+          placeholder="Email"
+          type={"email"}
+          autoFocus
+        />
       </label>
       <label>
-        <input placeholder="Password" />
+        <input
+          className="login-form__password"
+          placeholder="Password"
+          type={"password"}
+        />
       </label>
-      <span>
-        Not registered? <a href="register">Sign Up</a>
+      <span className="login-form__register">
+        Not registered?{" "}
+        <a className="login-form__register-link" href="register">
+          Sign Up
+        </a>
       </span>
-      <Button className={""} text={"Login"} />
-    </>
+      <Button className={"login-form__submit"} text={"Login"} />
+    </LoginFormStyled>
   );
 };
 
