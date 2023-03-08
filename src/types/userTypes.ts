@@ -1,8 +1,8 @@
-export interface userStructure {
+export interface UserStructure {
   username: string;
   email: string;
   token: string;
   isLogged: boolean;
 }
 
-export default userStructure;
+export default UserStructure;
