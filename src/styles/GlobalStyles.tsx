@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     min-height: 100vh;
     margin: 0;
-    background-color: #1C1C1E;
+    background-color: #1c1c1e;
     font-family: "roboto", sans-serif;
   }
 
