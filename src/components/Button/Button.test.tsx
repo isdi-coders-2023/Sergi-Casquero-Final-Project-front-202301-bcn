@@ -10,7 +10,12 @@ describe("Given a Button component", () => {
 
       render(
         <ThemeProvider theme={theme}>
-          <Button className={""} text={buttonText} />
+          <Button
+            className={""}
+            text={buttonText}
+            actionOnClick={() => {}}
+            type={"submit"}
+          />
         </ThemeProvider>
       );
       const button = screen.getByRole("button", { name: buttonText });

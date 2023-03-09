@@ -7,13 +7,20 @@ interface ButtonProps {
   className: string;
   text: string;
   icon?: string;
+  actionOnClick: () => void;
+  type: "submit" | "button";
 }
 
 library.add(faAngleRight);
 
-const Button = ({ className, text }: ButtonProps): JSX.Element => {
+const Button = ({
+  actionOnClick,
+  className,
+  text,
+  type,
+}: ButtonProps): JSX.Element => {
   return (
-    <ButtonStyled className={className}>
+    <ButtonStyled type={type} onClick={actionOnClick} className={className}>
       {text}
       <FontAwesomeIcon icon={"angle-right"} />
     </ButtonStyled>
