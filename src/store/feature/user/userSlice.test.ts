@@ -1,25 +1,22 @@
-import UserStructure from "../../../types/userTypes.js";
+import { UserState } from "../../../types/userTypes.js";
 import { loginUserActionCreator, userReducer } from "./userSlice";
 
 describe("Given a loginUser reducer", () => {
-  const userInitialState: UserStructure = {
-    username: "",
+  const userInitialState: UserState = {
+    username: "sergi",
     token: "",
-    email: "",
     isLogged: false,
   };
 
-  const userToLogIn: UserStructure = {
+  const userToLogIn: UserState = {
     username: "sergi",
     token: "gnkrjbiu45nfkjsd",
-    email: "sergi@isdi.com",
     isLogged: false,
   };
 
-  const userLoggedIn: UserStructure = {
+  const userLoggedIn: UserState = {
     username: "sergi",
     token: "gnkrjbiu45nfkjsd",
-    email: "sergi@isdi.com",
     isLogged: true,
   };
 
