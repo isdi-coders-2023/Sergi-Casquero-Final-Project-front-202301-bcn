@@ -1,8 +1,8 @@
+import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/feature/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
 import { CustomTokenPayload, LoginResponse, UseUserStructure } from "./types";
-import decodeToken from "jwt-decode";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_API_URL;
