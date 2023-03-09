@@ -27,29 +27,25 @@ const LoginForm = (): JSX.Element => {
   return (
     <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
       <h2 className="login-form__title">Welcome back!</h2>
-      <label>
-        <input
-          className="login-form__email"
-          placeholder="Email"
-          type={"email"}
-          autoFocus
-          name="email"
-          onChange={handleChange}
-          value={formData.email}
-          required
-        />
-      </label>
-      <label>
-        <input
-          className="login-form__password"
-          placeholder="Password"
-          type={"password"}
-          name="password"
-          onChange={handleChange}
-          value={formData.password}
-          required
-        />
-      </label>
+      <input
+        className="login-form__field"
+        placeholder="Email"
+        type={"email"}
+        autoFocus
+        name="email"
+        onChange={handleChange}
+        value={formData.email}
+        required
+      />
+      <input
+        className="login-form__field"
+        placeholder="Password"
+        type={"password"}
+        name="password"
+        onChange={handleChange}
+        value={formData.password}
+        required
+      />
       <span className="login-form__register">
         Not registered?{" "}
         <a className="login-form__register-link" href="register">
