@@ -14,8 +14,7 @@ const LoginFormStyled = styled.form`
       margin-bottom: 30px;
     }
 
-    &__email,
-    &__password {
+    &__field {
       color: ${(props) => props.theme.colors.secondaryColor};
       font-size: ${(props) => props.theme.fontSizes.biggerFontSize};
       width: 100%;
