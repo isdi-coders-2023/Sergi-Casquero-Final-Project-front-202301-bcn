@@ -7,7 +7,7 @@ interface ButtonProps {
   className: string;
   text: string;
   icon?: string;
-  actionOnClick: () => void;
+  actionOnClick?: () => void;
   type: "submit" | "button";
 }
 
