@@ -1,5 +1,4 @@
 export interface UserStructure {
-  username: string;
   token: string;
 }
 export interface UserState extends UserStructure {
@@ -9,4 +8,8 @@ export interface UserState extends UserStructure {
 export interface UserCredentials {
   email: string;
   password: string;
+}
+
+export interface UserRegister extends UserCredentials {
+  username: string;
 }
