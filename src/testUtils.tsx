@@ -15,6 +15,13 @@ const renderWithProviders = (
   {
     preloadedState = {
       user: { username: "", isLogged: false, token: "" },
+      ui: {
+        isLoadingShowing: false,
+        feedback: {
+          message: "",
+          isSuccess: true,
+        },
+      },
     },
     store = configureStore({ reducer: { user: userReducer }, preloadedState }),
     ...renderOptions
