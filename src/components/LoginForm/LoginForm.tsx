@@ -46,6 +46,9 @@ const LoginForm = (): JSX.Element => {
         value={formData.password}
         required
       />
+      <span className="login-form__error login-form__error--hidden">
+        Wrong credentials!
+      </span>
       <span className="login-form__register">
         Not registered?{" "}
         <a className="login-form__register-link" href="register">
