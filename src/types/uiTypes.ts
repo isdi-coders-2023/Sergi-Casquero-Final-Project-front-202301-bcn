@@ -5,6 +5,6 @@ export interface Feedback {
   };
 }
 
-export interface uiState extends Feedback {
+export interface UiState extends Feedback {
   isLoadingShowing: boolean;
 }

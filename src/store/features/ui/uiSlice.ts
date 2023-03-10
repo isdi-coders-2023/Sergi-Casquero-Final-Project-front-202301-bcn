@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uiState } from "../../../types/uiTypes";
+import { UiState } from "../../../types/uiTypes";
 
-const uiInitialState: uiState = {
+const uiInitialState: UiState = {
   isLoadingShowing: false,
   feedback: {
     message: "",
@@ -13,12 +13,12 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: uiInitialState,
   reducers: {
-    showLoader: (previousUi: uiState) => ({
+    showLoader: (previousUi: UiState) => ({
       ...previousUi,
       isLoadingShowing: true,
     }),
 
-    closeLoader: (previousUi: uiState) => ({
+    closeLoader: (previousUi: UiState) => ({
       ...previousUi,
       isLoadingShowing: false,
     }),
