@@ -2,8 +2,11 @@ import { configureStore, PreloadedState } from "@reduxjs/toolkit";
 import { render, RenderOptions } from "@testing-library/react";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import { AppStore, RootState } from "./store";
 import { userReducer } from "./store/features/user/userSlice";
+import GlobalStyles from "./styles/GlobalStyles";
+import theme from "./styles/theme";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -28,7 +31,14 @@ const renderWithProviders = (
   }: ExtendedRenderOptions = {}
 ) => {
   const Wrapper = ({ children }: PropsWithChildren): JSX.Element => {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          {children}
+        </ThemeProvider>
+      </Provider>
+    );
   };
 
   return render(ui, { wrapper: Wrapper });
