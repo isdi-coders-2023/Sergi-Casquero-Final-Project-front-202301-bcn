@@ -1,7 +1,5 @@
 import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme";
 import renderWithProviders from "../../testUtils";
 import { UserCredentials } from "../../types/userTypes";
 import LoginForm from "./LoginForm";
@@ -17,11 +15,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show an input with placeholder 'Email'", () => {
       const inputPlaceholder = "Email";
 
-      renderWithProviders(
-        <ThemeProvider theme={theme}>
-          <LoginForm />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm />);
       const emailInput = screen.getByPlaceholderText(inputPlaceholder);
 
       expect(emailInput).toBeInTheDocument();
@@ -30,11 +24,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show an input with placeholder 'Password'", () => {
       const inputPlaceholder = "Password";
 
-      renderWithProviders(
-        <ThemeProvider theme={theme}>
-          <LoginForm />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm />);
 
       const passwordInput = screen.getByPlaceholderText(inputPlaceholder);
 
@@ -44,11 +34,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show a button with text 'Login'", () => {
       const buttonText = "Login";
 
-      renderWithProviders(
-        <ThemeProvider theme={theme}>
-          <LoginForm />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm />);
 
       const submitButton = screen.getByRole("button", { name: buttonText });
 
@@ -61,11 +47,7 @@ describe("Given a LoginForm component", () => {
       const placeholderText = "Email";
       const textToType = "sergi@isdi.com";
 
-      renderWithProviders(
-        <ThemeProvider theme={theme}>
-          <LoginForm />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm />);
 
       const emailInput: HTMLInputElement =
         screen.getByPlaceholderText(placeholderText);
@@ -83,11 +65,7 @@ describe("Given a LoginForm component", () => {
       };
       const submitButtonText = "Login";
 
-      renderWithProviders(
-        <ThemeProvider theme={theme}>
-          <LoginForm />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm />);
 
       const submitButton = screen.getByRole("button", {
         name: submitButtonText,
@@ -104,6 +82,36 @@ describe("Given a LoginForm component", () => {
       await userEvent.click(submitButton);
 
       expect(mockedLoginUser).toHaveBeenCalledWith(mockedUser);
+    });
+  });
+
+  describe("When the user submits the form with wrong credentials", () => {
+    test("Then it should show the message 'Wrong credentials!'", async () => {
+      const expectedErrorMessage = "Wrong credentials!";
+      const emailTextToType = "sergi@isdi.com";
+      const passwordTextToType = "wrongPassword";
+      const emailPlaceholderText = "Email";
+      const passwordPlaceholderText = "Password";
+      const submitButtonText = "Login";
+
+      renderWithProviders(<LoginForm />);
+
+      const emailInput: HTMLInputElement =
+        screen.getByPlaceholderText(emailPlaceholderText);
+      await userEvent.type(emailInput, emailTextToType);
+
+      const passwordInput: HTMLInputElement = screen.getByPlaceholderText(
+        passwordPlaceholderText
+      );
+      await userEvent.type(passwordInput, passwordTextToType);
+      const submitButton = screen.getByRole("button", {
+        name: submitButtonText,
+      });
+      await act(async () => await userEvent.click(submitButton));
+
+      const errorMessage = screen.getByText(expectedErrorMessage);
+
+      expect(errorMessage).toBeInTheDocument();
     });
   });
 });

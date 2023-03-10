@@ -19,9 +19,17 @@ const LoginForm = (): JSX.Element => {
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
-    await loginUser(formData);
-    setFormData(initialLoginState);
+    const errorMessage = document.querySelector(".login-form__error")!;
+
+    errorMessage.classList.add("login-form__error--hidden");
+
+    try {
+      event.preventDefault();
+      await loginUser(formData);
+      setFormData(initialLoginState);
+    } catch {
+      errorMessage.classList.remove("login-form__error--hidden");
+    }
   };
 
   return (
