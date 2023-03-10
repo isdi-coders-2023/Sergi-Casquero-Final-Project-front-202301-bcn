@@ -17,7 +17,7 @@ const renderWithProviders = (
   ui: React.ReactElement,
   {
     preloadedState = {
-      user: { username: "", isLogged: false, token: "" },
+      user: { isLogged: false, token: "" },
       ui: {
         isLoadingShowing: false,
         feedback: {

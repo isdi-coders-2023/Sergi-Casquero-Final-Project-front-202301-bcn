@@ -1,8 +1,7 @@
-import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
-import { CustomTokenPayload, LoginResponse, UseUserStructure } from "./types";
+import { LoginResponse, UseUserStructure } from "./types";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -18,10 +17,8 @@ const useUser = (): UseUserStructure => {
     });
 
     const { token } = (await response.json()) as LoginResponse;
-    const tokenPayload: CustomTokenPayload = decodeToken(token);
-    const { username } = tokenPayload;
 
-    dispatch(loginUserActionCreator({ token, username, isLogged: false }));
+    dispatch(loginUserActionCreator(token));
     localStorage.setItem("token", token);
   };
 

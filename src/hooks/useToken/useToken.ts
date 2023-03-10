@@ -1,8 +1,6 @@
-import decodeToken from "jwt-decode";
 import { useCallback } from "react";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { CustomTokenPayload } from "../useUser/types";
 import { UseTokenStructure } from "./types";
 
 const useToken = (): UseTokenStructure => {
@@ -11,9 +9,7 @@ const useToken = (): UseTokenStructure => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const { username } = decodeToken<CustomTokenPayload>(token);
-
-      dispatch(loginUserActionCreator({ username, token, isLogged: false }));
+      dispatch(loginUserActionCreator(token));
     }
   }, [dispatch]);
 
