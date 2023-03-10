@@ -4,7 +4,7 @@ import { CustomTokenPayload } from "./types";
 import useUser from "./useUser";
 import decodeToken from "jwt-decode";
 import { UserState } from "../../types/userTypes";
-import { loginUserActionCreator } from "../../store/feature/user/userSlice";
+import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { UserCredentials } from "../../types/userTypes";
 import { server } from "../../mocks/server";
 
