@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useToken from "./useToken";
-import { loginUserActionCreator } from "../../store/feature/user/userSlice";
+import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import Wrapper from "../../mocks/Wrapper";
 

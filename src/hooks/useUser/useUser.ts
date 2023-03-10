@@ -1,5 +1,5 @@
 import decodeToken from "jwt-decode";
-import { loginUserActionCreator } from "../../store/feature/user/userSlice";
+import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
 import { CustomTokenPayload, LoginResponse, UseUserStructure } from "./types";
