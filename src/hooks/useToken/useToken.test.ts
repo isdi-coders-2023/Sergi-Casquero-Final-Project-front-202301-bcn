@@ -11,7 +11,6 @@ describe("Given a useToken custom hook", () => {
     test("Then it should call loginUserActionCreator with username decoded from token", () => {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5hbWUiOiJzZXJnaSIsImlhdCI6MTUxNjIzOTAyMn0.GrTRwzxBO9XZg4vCux7GJKi64zDJ1cEHZqXcWFJLmpw";
-      const decodedToken = { username: "sergi" };
       localStorage.setItem("token", token);
 
       const dispatchMock = jest.fn();
@@ -28,13 +27,7 @@ describe("Given a useToken custom hook", () => {
 
       getToken();
 
-      expect(dispatchMock).toHaveBeenCalledWith(
-        loginUserActionCreator({
-          username: decodedToken.username,
-          token,
-          isLogged: false,
-        })
-      );
+      expect(dispatchMock).toHaveBeenCalledWith(loginUserActionCreator(token));
 
       localStorage.clear();
     });
