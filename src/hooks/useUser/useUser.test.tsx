@@ -3,7 +3,6 @@ import Wrapper from "../../mocks/Wrapper";
 import { CustomTokenPayload } from "./types";
 import useUser from "./useUser";
 import decodeToken from "jwt-decode";
-import { UserState } from "../../types/userTypes";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { UserCredentials } from "../../types/userTypes";
 import { server } from "../../mocks/server";
@@ -25,8 +24,6 @@ jest.mock("../../store/hooks", () => ({
 }));
 
 jest.mock("jwt-decode", () => jest.fn());
-
-const mockedToken = "mockedToken";
 
 const mockedTokenPayload: CustomTokenPayload = {
   id: "1",
@@ -54,16 +51,10 @@ describe("Given a useUser custom hook", () => {
         mockedTokenPayload
       );
 
-      const mockedUser: UserState = {
-        username: "sergi27",
-        token: mockedToken,
-        isLogged: false,
-      };
-
       await act(async () => loginUser(userCredentials));
 
       expect(mockDispatcher).toHaveBeenCalledWith(
-        loginUserActionCreator(mockedUser)
+        loginUserActionCreator("mockedToken")
       );
     });
   });
