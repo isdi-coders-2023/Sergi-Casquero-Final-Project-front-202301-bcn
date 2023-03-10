@@ -53,4 +53,24 @@ describe("Given a useToken custom hook", () => {
       expect(localStorage.getItem("token")).toBeNull();
     });
   });
+
+  describe("When its getToken function is called but no token is found", () => {
+    test("Then it should not call loginUserActionCreator", () => {
+      const dispatchMock = jest.fn();
+
+      (useAppDispatch as jest.Mock).mockReturnValue(dispatchMock);
+
+      const {
+        result: {
+          current: { getToken },
+        },
+      } = renderHook(() => useToken(), {
+        wrapper: Wrapper,
+      });
+
+      getToken();
+
+      expect(dispatchMock).not.toHaveBeenCalled();
+    });
+  });
 });

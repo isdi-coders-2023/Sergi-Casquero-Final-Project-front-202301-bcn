@@ -1,7 +1,7 @@
-import { uiState } from "../../../types/uiTypes";
+import { UiState } from "../../../types/uiTypes";
 import { uiReducer } from "./uiSlice";
 
-const previousUiPayload: uiState = {
+const previousUiPayload: UiState = {
   isLoadingShowing: false,
   feedback: {
     message: "",
