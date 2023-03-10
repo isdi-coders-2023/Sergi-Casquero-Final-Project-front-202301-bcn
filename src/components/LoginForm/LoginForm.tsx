@@ -19,9 +19,17 @@ const LoginForm = (): JSX.Element => {
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
-    await loginUser(formData);
-    setFormData(initialLoginState);
+    const errorMessage = document.querySelector(".login-form__error")!;
+
+    errorMessage.classList.add("login-form__error--hidden");
+
+    try {
+      event.preventDefault();
+      await loginUser(formData);
+      setFormData(initialLoginState);
+    } catch {
+      errorMessage.classList.remove("login-form__error--hidden");
+    }
   };
 
   return (
@@ -46,6 +54,9 @@ const LoginForm = (): JSX.Element => {
         value={formData.password}
         required
       />
+      <span className="login-form__error login-form__error--hidden">
+        Wrong credentials!
+      </span>
       <span className="login-form__register">
         Not registered?{" "}
         <a className="login-form__register-link" href="register">

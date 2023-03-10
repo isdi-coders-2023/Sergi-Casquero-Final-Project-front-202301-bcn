@@ -26,10 +26,21 @@ const LoginFormStyled = styled.form`
       padding-left: ${(props) => props.theme.distances.inputLeftPadding};
     }
 
+    &__error {
+      color: ${(props) => props.theme.colors.errorColor};
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 1px;
+
+      &--hidden {
+        opacity: 0;
+      }
+    }
+
     &__register {
       color: ${(props) => props.theme.colors.secondaryColor};
       letter-spacing: 1px;
-      margin: 40px 0 80px 0;
+      margin: 20px 0 80px 0;
       align-self: center;
 
       &-link {
