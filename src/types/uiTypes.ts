@@ -1,10 +1,9 @@
 export interface Feedback {
-  feedback: {
-    message: string;
-    isSuccess: boolean;
-  };
+  message: string;
+  isSuccess: boolean;
 }
 
-export interface UiState extends Feedback {
+export interface UiState {
   isLoadingShowing: boolean;
+  feedback: Feedback;
 }

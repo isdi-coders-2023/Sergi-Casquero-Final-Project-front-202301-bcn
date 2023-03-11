@@ -1,3 +1,7 @@
+import {
+  hideFeedbackActionCreator,
+  showFeedbackActionCreator,
+} from "../../store/features/ui/uiSlice";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
@@ -8,18 +12,32 @@ const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const response = await fetch(`${apiUrl}/user/login`, {
-      method: "POST",
-      body: JSON.stringify(userCredentials),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    try {
+      dispatch(hideFeedbackActionCreator({ message: "", isSuccess: false }));
+      const response = await fetch(`${apiUrl}/user/login`, {
+        method: "POST",
+        body: JSON.stringify(userCredentials),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
 
-    const { token } = (await response.json()) as LoginResponse;
+      if (!response.ok) {
+        throw new Error();
+      }
 
-    dispatch(loginUserActionCreator(token));
-    localStorage.setItem("token", token);
+      const { token }: LoginResponse = await response.json();
+
+      dispatch(loginUserActionCreator(token));
+      localStorage.setItem("token", token);
+    } catch {
+      dispatch(
+        showFeedbackActionCreator({
+          message: "Wrong credentials",
+          isSuccess: false,
+        })
+      );
+    }
   };
 
   return { loginUser };
