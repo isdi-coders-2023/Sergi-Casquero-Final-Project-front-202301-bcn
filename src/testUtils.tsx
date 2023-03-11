@@ -4,6 +4,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { AppStore, RootState } from "./store";
+import { uiReducer } from "./store/features/ui/uiSlice";
 import { userReducer } from "./store/features/user/userSlice";
 import GlobalStyles from "./styles/GlobalStyles";
 import theme from "./styles/theme";
@@ -21,12 +22,15 @@ const renderWithProviders = (
       ui: {
         isLoadingShowing: false,
         feedback: {
-          message: "",
+          message: "mockedMessage",
           isSuccess: true,
         },
       },
     },
-    store = configureStore({ reducer: { user: userReducer }, preloadedState }),
+    store = configureStore({
+      reducer: { user: userReducer, ui: uiReducer },
+      preloadedState,
+    }),
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) => {

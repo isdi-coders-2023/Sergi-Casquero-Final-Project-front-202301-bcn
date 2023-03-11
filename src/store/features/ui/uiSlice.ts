@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UiState } from "../../../types/uiTypes";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Feedback, UiState } from "../../../types/uiTypes";
 
 const uiInitialState: UiState = {
   isLoadingShowing: false,
@@ -22,6 +22,16 @@ const uiSlice = createSlice({
       ...previousUi,
       isLoadingShowing: false,
     }),
+
+    showFeedback: (previousUi: UiState, action: PayloadAction<Feedback>) => ({
+      ...previousUi,
+      feedback: action.payload,
+    }),
+
+    hideFeedback: (previousUi: UiState, action: PayloadAction<Feedback>) => ({
+      ...previousUi,
+      feedback: action.payload,
+    }),
   },
 });
 
@@ -30,4 +40,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   showLoader: showLoaderActionCreator,
   closeLoader: closeLoaderActionCreator,
+  showFeedback: showFeedbackActionCreator,
+  hideFeedback: hideFeedbackActionCreator,
 } = uiSlice.actions;

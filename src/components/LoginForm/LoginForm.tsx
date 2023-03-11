@@ -1,10 +1,15 @@
-import { SyntheticEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import useUser from "../../hooks/useUser/useUser";
+import { useAppSelector } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
 import Button from "../Button/Button";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
+  const {
+    feedback: { message },
+  } = useAppSelector((state) => state.ui);
+
   const { loginUser } = useUser();
 
   const initialLoginState: UserCredentials = {
@@ -18,18 +23,10 @@ const LoginForm = (): JSX.Element => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event: SyntheticEvent) => {
-    const errorMessage = document.querySelector(".login-form__error")!;
-
-    errorMessage.classList.add("login-form__error--hidden");
-
-    try {
-      event.preventDefault();
-      await loginUser(formData);
-      setFormData(initialLoginState);
-    } catch {
-      errorMessage.classList.remove("login-form__error--hidden");
-    }
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await loginUser(formData);
+    setFormData(initialLoginState);
   };
 
   return (
@@ -54,9 +51,7 @@ const LoginForm = (): JSX.Element => {
         value={formData.password}
         required
       />
-      <span className="login-form__error login-form__error--hidden">
-        Wrong credentials!
-      </span>
+      <span className="login-form__error">{message}</span>
       <span className="login-form__register">
         Not registered?{" "}
         <a className="login-form__register-link" href="register">
