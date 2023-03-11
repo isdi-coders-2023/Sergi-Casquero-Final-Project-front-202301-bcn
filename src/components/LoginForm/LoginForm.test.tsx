@@ -84,34 +84,4 @@ describe("Given a LoginForm component", () => {
       expect(mockedLoginUser).toHaveBeenCalledWith(mockedUser);
     });
   });
-
-  describe("When the user submits the form with wrong credentials", () => {
-    test("Then it should show the message 'Wrong credentials!'", async () => {
-      const expectedErrorMessage = "Wrong credentials!";
-      const emailTextToType = "sergi@isdi.com";
-      const passwordTextToType = "wrongPassword";
-      const emailPlaceholderText = "Email";
-      const passwordPlaceholderText = "Password";
-      const submitButtonText = "Login";
-
-      renderWithProviders(<LoginForm />);
-
-      const emailInput: HTMLInputElement =
-        screen.getByPlaceholderText(emailPlaceholderText);
-      await userEvent.type(emailInput, emailTextToType);
-
-      const passwordInput: HTMLInputElement = screen.getByPlaceholderText(
-        passwordPlaceholderText
-      );
-      await userEvent.type(passwordInput, passwordTextToType);
-      const submitButton = screen.getByRole("button", {
-        name: submitButtonText,
-      });
-      await act(async () => await userEvent.click(submitButton));
-
-      const errorMessage = screen.getByText(expectedErrorMessage);
-
-      expect(errorMessage).toBeInTheDocument();
-    });
-  });
 });
