@@ -1,7 +1,7 @@
-import LoginPage from "./pages/LoginPage/LoginPage";
+import Loader from "./components/Loader/Loader";
 
 const App = (): JSX.Element => {
-  return <LoginPage />;
+  return <Loader />;
 };
 
 export default App;
