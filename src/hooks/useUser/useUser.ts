@@ -4,7 +4,7 @@ import {
 } from "../../store/features/ui/uiSlice";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { UserCredentials } from "../../types/userTypes";
+import { UserCredentials, UserRegister } from "../../types/userTypes";
 import { LoginResponse, UseUserStructure } from "./types";
 
 const useUser = (): UseUserStructure => {
@@ -40,7 +40,30 @@ const useUser = (): UseUserStructure => {
     }
   };
 
-  return { loginUser };
+  const registerUser = async (registerData: UserRegister) => {
+    try {
+      const response = await fetch(`${apiUrl}/user/register`, {
+        method: "POST",
+        body: JSON.stringify(registerData),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error();
+      }
+    } catch (error) {
+      showFeedbackActionCreator({
+        message: "Oh! Something went wrong...",
+        isSuccess: false,
+      });
+
+      return;
+    }
+  };
+
+  return { loginUser, registerUser };
 };
 
 export default useUser;

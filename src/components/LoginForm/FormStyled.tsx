@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-const LoginFormStyled = styled.form`
+const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: ${(props) => props.theme.sizes.mobileWidth};
 
-  .login-form {
+  .login-form,
+  .register-form {
     &__title {
       color: ${(props) => props.theme.colors.secondaryColor};
       font-size: ${(props) => props.theme.fontSizes.bigTitleFontSize};
@@ -31,10 +32,6 @@ const LoginFormStyled = styled.form`
       font-weight: 600;
       text-align: center;
       letter-spacing: 1px;
-
-      &--hidden {
-        opacity: 0;
-      }
     }
 
     &__register {
@@ -55,4 +52,4 @@ const LoginFormStyled = styled.form`
   }
 `;
 
-export default LoginFormStyled;
+export default FormStyled;

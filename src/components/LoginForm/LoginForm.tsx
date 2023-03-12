@@ -3,7 +3,7 @@ import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import { UserCredentials } from "../../types/userTypes";
 import Button from "../Button/Button";
-import LoginFormStyled from "./LoginFormStyled";
+import FormStyled from "./FormStyled";
 
 const LoginForm = (): JSX.Element => {
   const {
@@ -30,7 +30,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
+    <FormStyled className="login-form" onSubmit={handleSubmit}>
       <h2 className="login-form__title">Welcome back!</h2>
       <input
         className="login-form__field"
@@ -59,7 +59,7 @@ const LoginForm = (): JSX.Element => {
         </a>
       </span>
       <Button className={"login-form__submit"} text={"Login"} type={"submit"} />
-    </LoginFormStyled>
+    </FormStyled>
   );
 };
 

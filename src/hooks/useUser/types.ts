@@ -1,4 +1,4 @@
-import { UserCredentials } from "../../types/userTypes";
+import { UserCredentials, UserRegister } from "../../types/userTypes";
 import { type JwtPayload } from "jwt-decode";
 
 export interface LoginResponse {
@@ -13,4 +13,5 @@ export interface CustomTokenPayload extends JwtPayload {
 
 export interface UseUserStructure {
   loginUser: (userCredentials: UserCredentials) => Promise<void>;
+  registerUser: (registerData: UserRegister) => Promise<void>;
 }
