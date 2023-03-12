@@ -31,7 +31,6 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <FormStyled className="login-form" onSubmit={handleSubmit}>
-      <h2 className="login-form__title">Welcome back!</h2>
       <input
         className="login-form__field"
         placeholder="Email"
