@@ -32,7 +32,6 @@ const RegisterForm = (): JSX.Element => {
 
   return (
     <FormStyled className="register-form" onSubmit={handleSubmit}>
-      <h2 className="register-form__title">Hello Rookie!</h2>
       <input
         className="register-form__field"
         placeholder="Username"
