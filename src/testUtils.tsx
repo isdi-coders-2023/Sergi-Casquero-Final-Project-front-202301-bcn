@@ -2,6 +2,7 @@ import { configureStore, PreloadedState } from "@reduxjs/toolkit";
 import { render, RenderOptions } from "@testing-library/react";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { AppStore, RootState } from "./store";
 import { uiReducer } from "./store/features/ui/uiSlice";
@@ -38,8 +39,10 @@ const renderWithProviders = (
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          {children}
+          <BrowserRouter>
+            <GlobalStyles />
+            {children}
+          </BrowserRouter>
         </ThemeProvider>
       </Provider>
     );
