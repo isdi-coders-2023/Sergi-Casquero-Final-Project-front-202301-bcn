@@ -8,13 +8,6 @@ const FormStyled = styled.form`
 
   .login-form,
   .register-form {
-    &__title {
-      color: ${(props) => props.theme.colors.secondaryColor};
-      font-size: ${(props) => props.theme.fontSizes.bigTitleFontSize};
-      font-weight: 400;
-      margin-bottom: 30px;
-    }
-
     &__field {
       color: ${(props) => props.theme.colors.secondaryColor};
       font-size: ${(props) => props.theme.fontSizes.biggerFontSize};
