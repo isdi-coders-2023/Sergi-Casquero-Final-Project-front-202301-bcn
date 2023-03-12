@@ -20,7 +20,7 @@ const Loader = (): JSX.Element => {
       >
         {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(
           (angle, i) => (
-            <g transform={`rotate(${angle} 50 50)`} key={i}>
+            <g transform={`rotate(${angle} 50 50)`} key={angle}>
               <rect
                 x="47"
                 y="24"
