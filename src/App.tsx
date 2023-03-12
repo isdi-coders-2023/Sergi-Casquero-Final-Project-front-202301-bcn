@@ -1,7 +1,5 @@
-import LoginPage from "./pages/LoginPage/LoginPage";
-
 const App = (): JSX.Element => {
-  return <LoginPage />;
+  return <></>;
 };
 
 export default App;
