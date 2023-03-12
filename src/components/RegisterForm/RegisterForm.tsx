@@ -3,7 +3,7 @@ import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import { UserRegister } from "../../types/userTypes";
 import Button from "../Button/Button";
-import RegisterFormStyled from "./RegisterFormStyled";
+import FormStyled from "../LoginForm/FormStyled";
 
 const RegisterForm = (): JSX.Element => {
   const {
@@ -31,7 +31,7 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <RegisterFormStyled className="register-form" onSubmit={handleSubmit}>
+    <FormStyled className="register-form" onSubmit={handleSubmit}>
       <h2 className="register-form__title">Hello Rookie!</h2>
       <input
         className="register-form__field"
@@ -74,7 +74,7 @@ const RegisterForm = (): JSX.Element => {
         text={"Sign Up"}
         type={"submit"}
       />
-    </RegisterFormStyled>
+    </FormStyled>
   );
 };
 

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-const RegisterFormStyled = styled.form`
+const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: ${(props) => props.theme.sizes.mobileWidth};
 
+  .login-form,
   .register-form {
     &__title {
       color: ${(props) => props.theme.colors.secondaryColor};
@@ -51,4 +52,4 @@ const RegisterFormStyled = styled.form`
   }
 `;
 
-export default RegisterFormStyled;
+export default FormStyled;
