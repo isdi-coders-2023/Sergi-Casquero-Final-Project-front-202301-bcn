@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     background-color: #1c1c1e;
     font-family: "roboto", sans-serif;
+    padding-top: 100px;
   }
 
   a {
