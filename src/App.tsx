@@ -1,7 +1,7 @@
-import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 const App = (): JSX.Element => {
-  return <LoginPage />;
+  return <RegisterPage />;
 };
 
 export default App;

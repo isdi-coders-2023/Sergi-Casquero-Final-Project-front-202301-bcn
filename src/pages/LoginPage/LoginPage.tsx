@@ -1,12 +1,12 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
-import LoginPageStyled from "./LoginPageStyled";
+import FormPageStyled from "../FormPageStyled/FormPageStyled";
 
-const LoginPage = () => {
+const LoginPage = (): JSX.Element => {
   return (
-    <LoginPageStyled className="login-page">
+    <FormPageStyled className="login-page">
       <h2 className="login-page__title">Welcome back!</h2>
       <LoginForm />
-    </LoginPageStyled>
+    </FormPageStyled>
   );
 };
 
