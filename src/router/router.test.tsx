@@ -1,6 +1,6 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import { routes } from "./router";
+import { routes } from "./routers";
 import { ThemeProvider } from "styled-components";
 import theme from "../styles/theme";
 import { Provider } from "react-redux";
