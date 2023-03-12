@@ -4,12 +4,15 @@ import { CustomTokenPayload } from "./types";
 import useUser from "./useUser";
 import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
-import { UserCredentials } from "../../types/userTypes";
+import { UserCredentials, UserRegister } from "../../types/userTypes";
 import { server } from "../../mocks/server";
 
 beforeAll(() => {
-  jest.clearAllMocks();
   server.listen();
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
 });
 
 afterAll(() => {
@@ -36,6 +39,12 @@ const userCredentials: UserCredentials = {
   password: "sergi123",
 };
 
+const userRegisterData: UserRegister = {
+  username: "sergi27",
+  email: "sergi@isdi.com",
+  password: "sergi123",
+};
+
 describe("Given a useUser custom hook", () => {
   describe("When its loginUser function is called with the email 'sergi@isdi.com' and the password 'sergi123'", () => {
     test("Then it should dispatch the action to login the user", async () => {
@@ -56,6 +65,22 @@ describe("Given a useUser custom hook", () => {
       expect(mockDispatcher).toHaveBeenCalledWith(
         loginUserActionCreator("mockedToken")
       );
+    });
+  });
+
+  describe("When its registerUser function is called with username 'sergi27', email 'sergi@isdi.com', and password 'sergi123'", () => {
+    test("Then it should dispatch the action to register the user", async () => {
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
+
+      await act(async () => registerUser(userRegisterData));
+
+      expect(mockDispatcher).not.toHaveBeenCalledWith();
     });
   });
 });
