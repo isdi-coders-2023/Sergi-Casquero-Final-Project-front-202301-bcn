@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import { UserRegister } from "../../types/userTypes";
@@ -65,7 +66,7 @@ const RegisterForm = (): JSX.Element => {
       <span className="register-form__register">
         Already have an account?{" "}
         <a className="register-form__register-link" href="register">
-          Log in
+          <Link to={"/user/login"}>Log in</Link>
         </a>
       </span>
       <Button
