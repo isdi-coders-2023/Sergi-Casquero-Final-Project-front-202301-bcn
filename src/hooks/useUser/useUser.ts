@@ -1,6 +1,8 @@
 import {
+  closeLoaderActionCreator,
   hideFeedbackActionCreator,
   showFeedbackActionCreator,
+  showLoaderActionCreator,
 } from "../../store/features/ui/uiSlice";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { useAppDispatch } from "../../store/hooks";
@@ -13,6 +15,7 @@ const useUser = (): UseUserStructure => {
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
+      dispatch(showLoaderActionCreator());
       dispatch(hideFeedbackActionCreator({ message: "", isSuccess: false }));
       const response = await fetch(`${apiUrl}/user/login`, {
         method: "POST",
@@ -30,7 +33,11 @@ const useUser = (): UseUserStructure => {
 
       dispatch(loginUserActionCreator(token));
       localStorage.setItem("token", token);
+
+      dispatch(closeLoaderActionCreator());
     } catch {
+      dispatch(closeLoaderActionCreator());
+
       dispatch(
         showFeedbackActionCreator({
           message: "Wrong credentials",
@@ -42,6 +49,7 @@ const useUser = (): UseUserStructure => {
 
   const registerUser = async (registerData: UserRegister) => {
     try {
+      dispatch(showLoaderActionCreator());
       const response = await fetch(`${apiUrl}/user/register`, {
         method: "POST",
         body: JSON.stringify(registerData),
@@ -53,11 +61,17 @@ const useUser = (): UseUserStructure => {
       if (!response.ok) {
         throw new Error();
       }
+
+      dispatch(closeLoaderActionCreator());
     } catch (error) {
-      showFeedbackActionCreator({
-        message: "Oh! Something went wrong...",
-        isSuccess: false,
-      });
+      dispatch(closeLoaderActionCreator());
+
+      dispatch(
+        showFeedbackActionCreator({
+          message: "Oh! Something went wrong...",
+          isSuccess: false,
+        })
+      );
 
       return;
     }
