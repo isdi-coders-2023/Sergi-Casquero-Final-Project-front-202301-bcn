@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 import NotFoundStyled from "./NotFoundStyled";
 
 const NotFound = (): JSX.Element => {
+  const navigate = useNavigate();
+
+  const notFoundRedirect = () => {
+    navigate("/");
+  };
   return (
     <NotFoundStyled className="not-found">
       <svg
@@ -44,6 +51,12 @@ const NotFound = (): JSX.Element => {
         </defs>
       </svg>
       <span className="not-found__message">Oops... Page not found!</span>
+      <Button
+        className={"not-found__button"}
+        text={"Go back"}
+        type={"button"}
+        actionOnClick={notFoundRedirect}
+      />
     </NotFoundStyled>
   );
 };

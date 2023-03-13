@@ -12,5 +12,14 @@ describe("Given a NotFound component", () => {
 
       expect(message).toBeInTheDocument();
     });
+
+    test("Then it should show a button with the text 'Go back' inside", () => {
+      const buttonMessage = "Go back";
+
+      renderWithProviders(<NotFound />);
+      const button = screen.getByRole("button", { name: buttonMessage });
+
+      expect(button).toBeInTheDocument();
+    });
   });
 });
