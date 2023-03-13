@@ -6,6 +6,11 @@ import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { UserCredentials, UserRegister } from "../../types/userTypes";
 import { server } from "../../mocks/server";
+import { errorHandlers } from "../../mocks/handlers";
+import {
+  closeLoaderActionCreator,
+  showFeedbackActionCreator,
+} from "../../store/features/ui/uiSlice";
 
 beforeAll(() => {
   server.listen();
@@ -13,6 +18,7 @@ beforeAll(() => {
 
 afterEach(() => {
   jest.clearAllMocks();
+  server.resetHandlers();
 });
 
 afterAll(() => {
@@ -66,6 +72,33 @@ describe("Given a useUser custom hook", () => {
         loginUserActionCreator("mockedToken")
       );
     });
+
+    describe("When the user submits the form with wrong credentials", () => {
+      test("Then it should dispatch the action to show feedback", async () => {
+        server.resetHandlers(...errorHandlers);
+
+        const {
+          result: {
+            current: { loginUser },
+          },
+        } = renderHook(() => useUser(), {
+          wrapper: Wrapper,
+        });
+
+        (
+          decodeToken as jest.MockedFunction<typeof decodeToken>
+        ).mockReturnValue(mockedTokenPayload);
+
+        await act(async () => loginUser(userCredentials));
+
+        expect(mockDispatcher).toHaveBeenCalledWith(
+          showFeedbackActionCreator({
+            message: "Wrong credentials",
+            isSuccess: false,
+          })
+        );
+      });
+    });
   });
 
   describe("When its registerUser function is called with username 'sergi27', email 'sergi@isdi.com', and password 'sergi123'", () => {
@@ -80,7 +113,30 @@ describe("Given a useUser custom hook", () => {
 
       await act(async () => registerUser(userRegisterData));
 
-      expect(mockDispatcher).not.toHaveBeenCalledWith();
+      expect(mockDispatcher).toHaveBeenCalledWith(closeLoaderActionCreator());
+    });
+  });
+
+  describe("When its registerUser function is called and the response is not ok", () => {
+    test("Then it should dispatch the function to show the message 'Oh! Something went wrong...'", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
+
+      await act(async () => registerUser(userRegisterData));
+
+      expect(mockDispatcher).toHaveBeenCalledWith(
+        showFeedbackActionCreator({
+          message: "Oh! Something went wrong...",
+          isSuccess: false,
+        })
+      );
     });
   });
 });
