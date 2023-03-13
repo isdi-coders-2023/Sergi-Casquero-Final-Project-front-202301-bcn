@@ -5,7 +5,7 @@ const NotFoundStyled = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  transform: translateY(-30%);
+  transform: translateY(-10%);
 
   .not-found {
     &__message {
