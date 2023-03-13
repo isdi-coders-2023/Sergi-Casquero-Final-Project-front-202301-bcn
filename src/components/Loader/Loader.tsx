@@ -3,8 +3,8 @@ import LoaderStyled from "./LoaderStyled";
 const Loader = (): JSX.Element => {
   return (
     <LoaderStyled>
-      <h2 className="loader-title">RockFit</h2>
       <svg
+        aria-label="loader"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         style={{

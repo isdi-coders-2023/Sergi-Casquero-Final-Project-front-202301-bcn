@@ -4,16 +4,13 @@ import Loader from "./Loader";
 
 describe("Given a Loader component", () => {
   describe("When rendered", () => {
-    test("Then it should show the text 'RockFit' inside an h2 and a svg with a spinner", () => {
-      const loaderTitle = "RockFit";
+    test("Then it should show a spinner", () => {
+      const ariaLabelText = "loader";
 
       renderWithProviders(<Loader />);
-      const expectedTitle = screen.getByRole("heading", {
-        name: loaderTitle,
-        level: 2,
-      });
+      const expectedSpinner = screen.getByLabelText(ariaLabelText);
 
-      expect(expectedTitle).toBeInTheDocument();
+      expect(expectedSpinner).toBeInTheDocument();
     });
   });
 });
