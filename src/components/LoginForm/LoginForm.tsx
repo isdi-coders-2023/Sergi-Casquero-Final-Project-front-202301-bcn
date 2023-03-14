@@ -54,9 +54,9 @@ const LoginForm = (): JSX.Element => {
       <span className="login-form__error">{message}</span>
       <span className="login-form__register">
         Not registered?{" "}
-        <a className="login-form__register-link" href="register">
-          <Link to={"/user/register"}>Sign Up</Link>
-        </a>
+        <Link className="login-form__register-link" to={"/user/register"}>
+          Sign Up
+        </Link>
       </span>
       <Button className={"login-form__submit"} text={"Login"} type={"submit"} />
     </FormStyled>
