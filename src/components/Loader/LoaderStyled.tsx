@@ -6,6 +6,7 @@ const LoaderStyled = styled.section`
   display: flex;
   justify-content: center;
   top: 0;
+  left: 0;
 
   background-color: ${(props) => props.theme.colors.backgroundColor};
   width: 100%;
