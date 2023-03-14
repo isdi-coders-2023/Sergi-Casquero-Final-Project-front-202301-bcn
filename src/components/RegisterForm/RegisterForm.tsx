@@ -65,9 +65,9 @@ const RegisterForm = (): JSX.Element => {
       <span className="register-form__error">{message}</span>
       <span className="register-form__register">
         Already have an account?{" "}
-        <a className="register-form__register-link" href="register">
-          <Link to={"/user/login"}>Log in</Link>
-        </a>
+        <Link className="register-form__register-link" to={"/user/login"}>
+          Log in
+        </Link>
       </span>
       <Button
         className={"register-form__submit"}

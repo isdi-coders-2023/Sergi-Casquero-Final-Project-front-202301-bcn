@@ -67,6 +67,7 @@ const useUser = (): UseUserStructure => {
       }
 
       dispatch(closeLoaderActionCreator());
+      navigate("/user/login");
     } catch (error) {
       dispatch(closeLoaderActionCreator());
 
