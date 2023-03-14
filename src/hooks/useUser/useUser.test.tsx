@@ -32,6 +32,10 @@ jest.mock("../../store/hooks", () => ({
   useAppDispatch: () => mockDispatcher,
 }));
 
+jest.mock("react-router-dom", () => ({
+  useNavigate: jest.fn(),
+}));
+
 jest.mock("jwt-decode", () => jest.fn());
 
 const mockedTokenPayload: CustomTokenPayload = {
