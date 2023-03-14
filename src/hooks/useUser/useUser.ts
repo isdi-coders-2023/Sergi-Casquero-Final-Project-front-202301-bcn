@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   closeLoaderActionCreator,
   hideFeedbackActionCreator,
@@ -12,6 +13,7 @@ import { LoginResponse, UseUserStructure } from "./types";
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_API_URL;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
@@ -35,6 +37,8 @@ const useUser = (): UseUserStructure => {
       localStorage.setItem("token", token);
 
       dispatch(closeLoaderActionCreator());
+
+      navigate("/workouts");
     } catch {
       dispatch(closeLoaderActionCreator());
 
